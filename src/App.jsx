@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSongs } from "./Redux/SongSlice";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Home from "./components/Home";
+import Player from "./components/Player";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Simuliamo il fetch delle canzoni
+    const songs = [
+      { id: 1, title: "Song 1", details: "Details of Song 1" },
+      { id: 2, title: "Song 2", details: "Details of Song 2" },
+    ];
+    dispatch(setSongs(songs));
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Home />
+      <Player />
     </div>
   );
-}
+};
 
 export default App;
